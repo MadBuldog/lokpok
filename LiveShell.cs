@@ -57,28 +57,21 @@ namespace lokpok_v2
         {
             _live = live;
             
-
-            //_live.HpChanged += HPChangeInBar;
-            //_live.HpChanged += HPCHangeInLog;
             _live.LiveDead += Death;
 
             HpBarsList = new List<NewHpBar>();
             foreach (var hp in _live.HealthPointsList)
                 HpBarsList.Add(new NewHpBar(80, 15, hp));
 
-            //NewHpBar = new NewHpBar(30, 10, new HealthPoints(_live.Name, _live.HealthPointsList[0].MaxValue, HealthType.CriticalToLife));
-            //NewHpBar = HpBarsList[0];
-            //NewHpBar.Name = _live.Name;
-            //NewHpBar.Width = 30;
-            //NewHpBar.Height = 10;
-
+            NewHpBar = new NewHpBar(30, 10, _live.HealthPointsList[0]);
+            
             _grid = new Grid();
             _grid.RowDefinitions.Add(new RowDefinition());
             _grid.RowDefinitions.Add(new RowDefinition());
 
-            //NewHpBar.Margin = new Thickness(0, 6, 0, 0);
-            //NewHpBar.SetValue(Grid.RowProperty, 0);
-            //_grid.Children.Add(NewHpBar);
+            NewHpBar.Margin = new Thickness(0, 6, 0, 0);
+            NewHpBar.SetValue(Grid.RowProperty, 0);
+            _grid.Children.Add(NewHpBar);
 
             this.SetValue(Grid.RowProperty, 1);
             _grid.Children.Add(this);
